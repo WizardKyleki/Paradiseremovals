@@ -35,6 +35,7 @@ export default function Footer() {
                 width={70}
                 height={70}
                 className="w-[70px] h-[70px] object-contain"
+                loading="lazy"
               />
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-4 max-w-xs">
@@ -78,9 +79,9 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -97,9 +98,9 @@ export default function Footer() {
 
           {/* Service Areas */}
           <div>
-            <h4 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Service Areas
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {serviceAreas.map((area) => (
                 <li key={area.name}>
@@ -116,9 +117,9 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Contact Us
-            </h4>
+            </h3>
             <div className="space-y-3">
               <a
                 href="tel:+61434428785"
@@ -203,20 +204,20 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-sm">
+          <p className="text-white/60 text-sm">
             &copy; {new Date().getFullYear()} Paradise Removals. All rights
             reserved.
           </p>
           <div className="flex gap-6">
             <a
               href="#"
-              className="text-white/50 text-sm hover:text-white/50 transition-colors"
+              className="text-white/60 text-sm hover:text-white/80 transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-white/50 text-sm hover:text-white/50 transition-colors"
+              className="text-white/60 text-sm hover:text-white/80 transition-colors"
             >
               Terms of Service
             </a>

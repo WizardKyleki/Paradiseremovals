@@ -17,6 +17,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.paradiseremovals.com.au"),
   title: "Paradise Removals | Gold Coast Furniture Removalists - Your Sunny Start",
   description:
     "Gold Coast's trusted furniture removalists. Professional, affordable, and stress-free removals across Arundel, Southport, Helensvale, Coomera, Labrador & Parkwood. Get a free quote today!",
@@ -28,6 +29,13 @@ export const metadata: Metadata = {
       "Professional, affordable, and stress-free furniture removals across the Gold Coast. Your Sunny Start to a new home.",
     type: "website",
     locale: "en_AU",
+    siteName: "Paradise Removals",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Paradise Removals | Gold Coast Furniture Removalists",
+    description:
+      "Professional, affordable, and stress-free furniture removals across the Gold Coast.",
   },
 };
 

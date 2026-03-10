@@ -88,7 +88,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
               <h3 className="font-heading text-2xl font-bold text-navy mb-2">
                 Quote Request Sent!
               </h3>
-              <p className="text-navy/50 max-w-md mx-auto">
+              <p className="text-navy/65 max-w-md mx-auto">
                 We&apos;ll get back to you within 24 hours with your personalised quote.
               </p>
             </div>
@@ -105,7 +105,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                             ? "bg-navy text-white scale-100"
                             : currentStep === step.number
                             ? "bg-navy text-white scale-110 shadow-[0_0_20px_rgba(17,31,162,0.3)]"
-                            : "bg-sand text-navy/30 border-2 border-navy/10"
+                            : "bg-sand text-navy/50 border-2 border-navy/10"
                         }`}
                       >
                         {currentStep > step.number ? (
@@ -118,7 +118,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                       </div>
                       <span
                         className={`absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-semibold whitespace-nowrap transition-colors duration-300 ${
-                          currentStep >= step.number ? "text-navy" : "text-navy/25"
+                          currentStep >= step.number ? "text-navy" : "text-navy/50"
                         }`}
                       >
                         {step.label}
@@ -317,7 +317,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                       <button
                         type="button"
                         onClick={goBack}
-                        className="flex items-center gap-2 text-navy/40 hover:text-navy transition-colors text-sm font-semibold"
+                        className="flex items-center gap-2 text-navy/60 hover:text-navy transition-colors text-sm font-semibold"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -327,7 +327,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                     )}
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-navy/20 text-sm hidden sm:block">
+                    <span className="text-navy/50 text-sm hidden sm:block">
                       Step {currentStep} of 3
                     </span>
                     {currentStep < 3 ? (
