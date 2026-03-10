@@ -1,10 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import type { QuoteFormData, ApiResponse } from "@/lib/types";
 
 export default function QuoteForm() {
   const sectionRef = useRef<HTMLElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState<Omit<QuoteFormData, "formType">>({
+    name: "",
+    phone: "",
+    email: "",
+    from: "",
+    to: "",
+    date: "",
+    size: "",
+    details: "",
+  });
+
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,9 +39,30 @@ export default function QuoteForm() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "contact-form", ...formData }),
+      });
+
+      const data: ApiResponse = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message);
+      }
+    } catch {
+      setError("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,6 +122,8 @@ export default function QuoteForm() {
                       required
                       placeholder="Your full name"
                       className="form-input"
+                      value={formData.name}
+                      onChange={(e) => updateField("name", e.target.value)}
                     />
                   </div>
                   <div>
@@ -96,6 +136,8 @@ export default function QuoteForm() {
                       required
                       placeholder="04XX XXX XXX"
                       className="form-input"
+                      value={formData.phone}
+                      onChange={(e) => updateField("phone", e.target.value)}
                     />
                   </div>
                 </div>
@@ -110,6 +152,8 @@ export default function QuoteForm() {
                     required
                     placeholder="your@email.com"
                     className="form-input"
+                    value={formData.email}
+                    onChange={(e) => updateField("email", e.target.value)}
                   />
                 </div>
 
@@ -124,6 +168,8 @@ export default function QuoteForm() {
                       required
                       placeholder="Current address or suburb"
                       className="form-input"
+                      value={formData.from}
+                      onChange={(e) => updateField("from", e.target.value)}
                     />
                   </div>
                   <div>
@@ -136,6 +182,8 @@ export default function QuoteForm() {
                       required
                       placeholder="New address or suburb"
                       className="form-input"
+                      value={formData.to}
+                      onChange={(e) => updateField("to", e.target.value)}
                     />
                   </div>
                 </div>
@@ -145,13 +193,13 @@ export default function QuoteForm() {
                     <label htmlFor="contact-date" className="block text-navy/80 text-sm font-medium mb-2">
                       Preferred Date *
                     </label>
-                    <input id="contact-date" type="date" required className="form-input" />
+                    <input id="contact-date" type="date" required className="form-input" value={formData.date} onChange={(e) => updateField("date", e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="contact-size" className="block text-navy/80 text-sm font-medium mb-2">
                       Property Size *
                     </label>
-                    <select id="contact-size" required className="form-input" defaultValue="">
+                    <select id="contact-size" required className="form-input" value={formData.size} onChange={(e) => updateField("size", e.target.value)}>
                       <option value="" disabled>
                         Select property size
                       </option>
@@ -173,11 +221,33 @@ export default function QuoteForm() {
                     rows={4}
                     placeholder="Tell us about any special requirements, large items, stairs, access issues, etc."
                     className="form-input resize-none"
+                    value={formData.details}
+                    onChange={(e) => updateField("details", e.target.value)}
                   />
                 </div>
 
-                <button type="submit" className="btn-gold text-base w-full sm:w-auto">
-                  Request Free Quote
+                {error && (
+                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm text-center">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-gold text-base w-full sm:w-auto disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      Sending...
+                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                    </>
+                  ) : (
+                    "Request Free Quote"
+                  )}
                 </button>
               </form>
             )}

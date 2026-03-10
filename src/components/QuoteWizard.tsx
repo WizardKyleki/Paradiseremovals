@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import type { QuoteWizardData, ApiResponse } from "@/lib/types";
 
 const steps = [
   { number: 1, label: "Move Details" },
@@ -12,6 +13,23 @@ const steps = [
 export default function QuoteWizard({ standalone = false }: { standalone?: boolean }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState<Omit<QuoteWizardData, "formType">>({
+    from: "",
+    to: "",
+    date: "",
+    bedrooms: "",
+    furnishing: "",
+    name: "",
+    email: "",
+    phone: "",
+    details: "",
+  });
+
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const goNext = () => {
     if (currentStep < 3) setCurrentStep((s) => s + 1);
@@ -21,9 +39,30 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
     if (currentStep > 1) setCurrentStep((s) => s - 1);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "quote-wizard", ...formData }),
+      });
+
+      const data: ApiResponse = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message);
+      }
+    } catch {
+      setError("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -162,6 +201,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                             required
                             placeholder="Current suburb or address"
                             className="wizard-input pl-14"
+                            value={formData.from}
+                            onChange={(e) => updateField("from", e.target.value)}
                           />
                         </div>
                       </div>
@@ -180,6 +221,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                             required
                             placeholder="New suburb or address"
                             className="wizard-input pl-14"
+                            value={formData.to}
+                            onChange={(e) => updateField("to", e.target.value)}
                           />
                         </div>
                       </div>
@@ -196,6 +239,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                             type="date"
                             required
                             className="wizard-input pl-14"
+                            value={formData.date}
+                            onChange={(e) => updateField("date", e.target.value)}
                           />
                         </div>
                       </div>
@@ -216,7 +261,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                           <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-blue/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
                           </svg>
-                          <select id="quote-bedrooms" required className="wizard-input pl-14 appearance-none" defaultValue="">
+                          <select id="quote-bedrooms" required className="wizard-input pl-14 appearance-none" value={formData.bedrooms} onChange={(e) => updateField("bedrooms", e.target.value)}>
                             <option value="" disabled>Select bedrooms</option>
                             <option>Studio / 1 Bedroom</option>
                             <option>2 Bedrooms</option>
@@ -238,7 +283,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                           <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                           </svg>
-                          <select id="quote-furnishing" required className="wizard-input pl-14 appearance-none" defaultValue="">
+                          <select id="quote-furnishing" required className="wizard-input pl-14 appearance-none" value={formData.furnishing} onChange={(e) => updateField("furnishing", e.target.value)}>
                             <option value="" disabled>Select furnishing level</option>
                             <option>Lightly Furnished</option>
                             <option>Average Furnishing</option>
@@ -269,6 +314,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                           required
                           placeholder="Your full name"
                           className="wizard-input"
+                          value={formData.name}
+                          onChange={(e) => updateField("name", e.target.value)}
                         />
                       </div>
                       <div>
@@ -281,6 +328,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                           required
                           placeholder="your@email.com"
                           className="wizard-input"
+                          value={formData.email}
+                          onChange={(e) => updateField("email", e.target.value)}
                         />
                       </div>
                       <div>
@@ -293,6 +342,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                           required
                           placeholder="04XX XXX XXX"
                           className="wizard-input"
+                          value={formData.phone}
+                          onChange={(e) => updateField("phone", e.target.value)}
                         />
                       </div>
                     </div>
@@ -305,10 +356,19 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                         rows={3}
                         placeholder="Special requirements, large items, stairs, access issues..."
                         className="wizard-input resize-none"
+                        value={formData.details}
+                        onChange={(e) => updateField("details", e.target.value)}
                       />
                     </div>
                   </div>
                 </div>
+
+                {/* Error Banner */}
+                {error && (
+                  <div className="mt-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm text-center">
+                    {error}
+                  </div>
+                )}
 
                 {/* Navigation Buttons */}
                 <div className="flex items-center justify-between mt-8 pt-6 border-t border-navy/[0.06]">
@@ -344,12 +404,25 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                     ) : (
                       <button
                         type="submit"
-                        className="btn-gold !py-3 !px-8 text-sm flex items-center gap-2"
+                        disabled={isSubmitting}
+                        className="btn-gold !py-3 !px-8 text-sm flex items-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
                       >
-                        Get My Free Quote
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+                        {isSubmitting ? (
+                          <>
+                            Sending...
+                            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                          </>
+                        ) : (
+                          <>
+                            Get My Free Quote
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </>
+                        )}
                       </button>
                     )}
                   </div>
