@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { resend } from "@/lib/resend";
+import { getResend } from "@/lib/resend";
 import { buildQuoteEmailHtml } from "@/lib/email-template";
 import type { FormSubmission, ApiResponse } from "@/lib/types";
 
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       body.formType === "quote-wizard" ? "Quote Request" : "Contact Form";
     const subject = `${subjectPrefix}: ${body.name} - ${body.from} to ${body.to}`;
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: "Paradise Removals <quotes@paradiseremovals.com.au>",
       to: "info@paradiseremovals.com.au",
       subject,
