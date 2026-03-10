@@ -1,30 +1,37 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 const areas = [
   {
     name: "Arundel",
+    slug: "arundel",
     description: "Serving Arundel and surrounding areas with reliable local removals.",
   },
   {
     name: "Southport",
+    slug: "southport",
     description: "Fast, efficient moves across Southport's apartments and homes.",
   },
   {
     name: "Helensvale",
+    slug: "helensvale",
     description: "Trusted removalists for families and businesses in Helensvale.",
   },
   {
     name: "Coomera",
+    slug: "coomera",
     description: "Professional furniture removals throughout the Coomera region.",
   },
   {
     name: "Labrador",
+    slug: "labrador",
     description: "Your local Labrador moving experts — affordable and dependable.",
   },
   {
     name: "Parkwood",
+    slug: "parkwood",
     description: "Comprehensive removals service covering all of Parkwood.",
   },
 ];
@@ -61,7 +68,7 @@ export default function ServiceAreas() {
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
             Proudly Serving the Gold Coast
           </h2>
-          <p className="text-navy/60 text-lg max-w-2xl mx-auto">
+          <p className="text-navy/70 text-lg max-w-2xl mx-auto">
             We cover all major Gold Coast suburbs with fast, professional
             removals.
           </p>
@@ -70,9 +77,10 @@ export default function ServiceAreas() {
         {/* Area Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {areas.map((area, index) => (
-            <div
+            <Link
+              href={`/removals/${area.slug}`}
               key={area.name}
-              className={`area-card flex items-start gap-4 animate-on-scroll delay-${index + 1}`}
+              className={`area-card flex items-start gap-4 animate-on-scroll delay-${index + 1} group`}
             >
               <div className="icon-circle bg-gradient-to-br from-gold/15 to-cyan/10 text-navy shrink-0 !w-12 !h-12 !min-w-[48px]">
                 <svg
@@ -84,23 +92,23 @@ export default function ServiceAreas() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-heading text-lg font-bold text-navy mb-1">
+                <h3 className="font-heading text-lg font-bold text-navy mb-1 group-hover:text-gold transition-colors">
                   {area.name}
                 </h3>
-                <p className="text-navy/55 text-sm leading-relaxed">
+                <p className="text-navy/65 text-sm leading-relaxed">
                   {area.description}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* Map-style CTA */}
         <div className="mt-12 text-center animate-on-scroll">
-          <p className="text-navy/50 text-sm mb-4">
+          <p className="text-navy/60 text-sm mb-4">
             Don&apos;t see your suburb? We likely cover it too!
           </p>
-          <a href="#quote" className="btn-gold inline-block text-sm">
+          <a href="/contact" className="btn-gold inline-block text-sm">
             Check Your Area
           </a>
         </div>

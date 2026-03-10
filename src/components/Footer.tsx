@@ -1,21 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const quickLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Why Choose Us", href: "#why-us" },
-  { label: "Service Areas", href: "#areas" },
-  { label: "About Us", href: "#about" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Get a Quote", href: "#quote" },
+  { label: "Home", href: "/" },
+  { label: "Local Moves", href: "/#areas" },
+  { label: "Packing Services", href: "/services/packing" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const serviceAreas = [
-  "Arundel",
-  "Southport",
-  "Helensvale",
-  "Coomera",
-  "Labrador",
-  "Parkwood",
+  { name: "Arundel", href: "/removals/arundel" },
+  { name: "Southport", href: "/removals/southport" },
+  { name: "Helensvale", href: "/removals/helensvale" },
+  { name: "Coomera", href: "/removals/coomera" },
+  { name: "Labrador", href: "/removals/labrador" },
+  { name: "Parkwood", href: "/removals/parkwood" },
 ];
 
 export default function Footer() {
@@ -37,7 +37,7 @@ export default function Footer() {
                 className="w-[70px] h-[70px] object-contain"
               />
             </div>
-            <p className="text-white/40 text-sm leading-relaxed mb-4 max-w-xs">
+            <p className="text-white/60 text-sm leading-relaxed mb-4 max-w-xs">
               Gold Coast&apos;s trusted furniture removalists. Making your move
               a breeze since day one.
             </p>
@@ -48,7 +48,7 @@ export default function Footer() {
                 aria-label="Facebook"
                 className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/50 hover:bg-gold/20 hover:text-gold transition-all"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
@@ -57,7 +57,7 @@ export default function Footer() {
                 aria-label="Instagram"
                 className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/50 hover:bg-gold/20 hover:text-gold transition-all"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                 </svg>
               </a>
@@ -66,7 +66,7 @@ export default function Footer() {
                 aria-label="Google Business"
                 className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/50 hover:bg-gold/20 hover:text-gold transition-all"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
                   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
@@ -86,7 +86,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-white/45 text-sm hover:text-gold transition-colors"
+                    className="text-white/60 text-sm hover:text-gold transition-colors"
                   >
                     {link.label}
                   </a>
@@ -102,8 +102,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {serviceAreas.map((area) => (
-                <li key={area}>
-                  <span className="text-white/45 text-sm">{area}</span>
+                <li key={area.name}>
+                  <Link
+                    href={area.href}
+                    className="text-white/60 text-sm hover:text-gold transition-colors"
+                  >
+                    {area.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -124,6 +129,7 @@ export default function Footer() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -134,12 +140,13 @@ export default function Footer() {
                 </svg>
                 0434 428 785
               </a>
-              <div className="flex items-center gap-2 text-white/45 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <svg
                   className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -150,12 +157,13 @@ export default function Footer() {
                 </svg>
                 info@paradiseremovals.com.au
               </div>
-              <div className="flex items-center gap-2 text-white/45 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <svg
                   className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -172,12 +180,13 @@ export default function Footer() {
                 </svg>
                 Gold Coast, QLD, Australia
               </div>
-              <div className="flex items-center gap-2 text-white/45 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <svg
                   className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -194,20 +203,20 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">
+          <p className="text-white/50 text-sm">
             &copy; {new Date().getFullYear()} Paradise Removals. All rights
             reserved.
           </p>
           <div className="flex gap-6">
             <a
               href="#"
-              className="text-white/30 text-sm hover:text-white/50 transition-colors"
+              className="text-white/50 text-sm hover:text-white/50 transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-white/30 text-sm hover:text-white/50 transition-colors"
+              className="text-white/50 text-sm hover:text-white/50 transition-colors"
             >
               Terms of Service
             </a>

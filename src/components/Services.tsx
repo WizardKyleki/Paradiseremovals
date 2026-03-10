@@ -95,7 +95,7 @@ export default function Services() {
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
             Our Services
           </h2>
-          <p className="text-navy/60 text-lg max-w-2xl mx-auto">
+          <p className="text-navy/70 text-lg max-w-2xl mx-auto">
             Everything you need for a smooth, stress-free move — all under one
             roof.
           </p>
@@ -114,7 +114,7 @@ export default function Services() {
               <h3 className="font-heading text-xl font-bold text-navy mb-3">
                 {service.title}
               </h3>
-              <p className="text-navy/60 leading-relaxed">
+              <p className="text-navy/70 leading-relaxed">
                 {service.description}
               </p>
             </div>

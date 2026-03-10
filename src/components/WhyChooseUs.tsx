@@ -114,7 +114,7 @@ export default function WhyChooseUs() {
                 <h3 className="font-heading text-lg font-bold text-white mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-white/55 text-sm leading-relaxed">
+                <p className="text-white/70 text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>

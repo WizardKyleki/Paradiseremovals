@@ -115,7 +115,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="hero-fade-up-delay-3 flex flex-wrap gap-4">
-            <a href="#quote" className="btn-gold text-base group">
+            <a href="/contact" className="btn-gold text-base group">
               <span className="flex items-center gap-2">
                 Get a Free Quote
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +137,7 @@ export default function Hero() {
           <div className="hero-fade-up-delay-4 mt-12 grid grid-cols-3 gap-3 max-w-md">
             <div className="hero-stat-card">
               <span className="text-2xl sm:text-3xl font-heading font-extrabold text-gold leading-none">2,500+</span>
-              <span className="text-white/40 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Moves Done</span>
+              <span className="text-white/60 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Moves Done</span>
             </div>
             <div className="hero-stat-card">
               <span className="text-2xl sm:text-3xl font-heading font-extrabold text-cyan leading-none flex items-baseline gap-1">
@@ -146,11 +146,11 @@ export default function Hero() {
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </span>
-              <span className="text-white/40 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Rating</span>
+              <span className="text-white/60 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Rating</span>
             </div>
             <div className="hero-stat-card">
               <span className="text-2xl sm:text-3xl font-heading font-extrabold text-blue-light leading-none">100%</span>
-              <span className="text-white/40 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Insured</span>
+              <span className="text-white/60 text-[0.7rem] font-semibold uppercase tracking-widest mt-1.5">Insured</span>
             </div>
           </div>
         </div>
@@ -160,10 +160,12 @@ export default function Hero() {
       <div className="hidden lg:block absolute bottom-[80px] right-0 pointer-events-none">
         <Image
           src="/images/truck.png"
-          alt="Paradise Removals truck"
+          alt=""
           width={550}
           height={300}
           className="w-[400px] h-auto object-contain opacity-10 translate-x-[60px]"
+          loading="lazy"
+          aria-hidden="true"
         />
       </div>
 

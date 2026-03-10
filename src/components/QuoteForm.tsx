@@ -41,7 +41,7 @@ export default function QuoteForm() {
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
               Get Your Free Quote
             </h2>
-            <p className="text-navy/60 text-lg mb-8">
+            <p className="text-navy/70 text-lg mb-8">
               Tell us about your move and we&apos;ll get back to you with a
               no-obligation quote within 24 hours.
             </p>
@@ -75,10 +75,11 @@ export default function QuoteForm() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-name" className="block text-navy/80 text-sm font-medium mb-2">
                       Full Name *
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       placeholder="Your full name"
@@ -86,10 +87,11 @@ export default function QuoteForm() {
                     />
                   </div>
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-phone" className="block text-navy/80 text-sm font-medium mb-2">
                       Phone Number *
                     </label>
                     <input
+                      id="contact-phone"
                       type="tel"
                       required
                       placeholder="04XX XXX XXX"
@@ -99,10 +101,11 @@ export default function QuoteForm() {
                 </div>
 
                 <div>
-                  <label className="block text-navy/80 text-sm font-medium mb-2">
+                  <label htmlFor="contact-email" className="block text-navy/80 text-sm font-medium mb-2">
                     Email Address *
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     placeholder="your@email.com"
@@ -112,10 +115,11 @@ export default function QuoteForm() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-from" className="block text-navy/80 text-sm font-medium mb-2">
                       Moving From *
                     </label>
                     <input
+                      id="contact-from"
                       type="text"
                       required
                       placeholder="Current address or suburb"
@@ -123,10 +127,11 @@ export default function QuoteForm() {
                     />
                   </div>
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-to" className="block text-navy/80 text-sm font-medium mb-2">
                       Moving To *
                     </label>
                     <input
+                      id="contact-to"
                       type="text"
                       required
                       placeholder="New address or suburb"
@@ -137,16 +142,16 @@ export default function QuoteForm() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-date" className="block text-navy/80 text-sm font-medium mb-2">
                       Preferred Date *
                     </label>
-                    <input type="date" required className="form-input" />
+                    <input id="contact-date" type="date" required className="form-input" />
                   </div>
                   <div>
-                    <label className="block text-navy/80 text-sm font-medium mb-2">
+                    <label htmlFor="contact-size" className="block text-navy/80 text-sm font-medium mb-2">
                       Property Size *
                     </label>
-                    <select required className="form-input" defaultValue="">
+                    <select id="contact-size" required className="form-input" defaultValue="">
                       <option value="" disabled>
                         Select property size
                       </option>
@@ -160,10 +165,11 @@ export default function QuoteForm() {
                 </div>
 
                 <div>
-                  <label className="block text-navy/80 text-sm font-medium mb-2">
+                  <label htmlFor="contact-details" className="block text-navy/80 text-sm font-medium mb-2">
                     Additional Details
                   </label>
                   <textarea
+                    id="contact-details"
                     rows={4}
                     placeholder="Tell us about any special requirements, large items, stairs, access issues, etc."
                     className="form-input resize-none"
@@ -192,6 +198,7 @@ export default function QuoteForm() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -205,7 +212,7 @@ export default function QuoteForm() {
                     <span className="block font-semibold text-navy text-sm">
                       100% Free, No Obligation
                     </span>
-                    <span className="text-navy/50 text-sm">
+                    <span className="text-navy/60 text-sm">
                       Get your quote with zero pressure or commitment.
                     </span>
                   </div>
@@ -218,6 +225,7 @@ export default function QuoteForm() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -231,7 +239,7 @@ export default function QuoteForm() {
                     <span className="block font-semibold text-navy text-sm">
                       Response Within 24 Hours
                     </span>
-                    <span className="text-navy/50 text-sm">
+                    <span className="text-navy/60 text-sm">
                       We respond fast so you can plan your move with confidence.
                     </span>
                   </div>
@@ -244,6 +252,7 @@ export default function QuoteForm() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -257,7 +266,7 @@ export default function QuoteForm() {
                     <span className="block font-semibold text-navy text-sm">
                       Transparent Pricing
                     </span>
-                    <span className="text-navy/50 text-sm">
+                    <span className="text-navy/60 text-sm">
                       No hidden fees. The price you see is the price you pay.
                     </span>
                   </div>

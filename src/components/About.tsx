@@ -54,23 +54,23 @@ export default function About() {
                 <span className="block font-heading text-3xl font-extrabold text-gold">
                   10+
                 </span>
-                <span className="text-navy/50 text-sm">Years Experience</span>
+                <span className="text-navy/60 text-sm">Years Experience</span>
               </div>
               <div>
                 <span className="block font-heading text-3xl font-extrabold text-gold">
                   15+
                 </span>
-                <span className="text-navy/50 text-sm">Team Members</span>
+                <span className="text-navy/60 text-sm">Team Members</span>
               </div>
               <div>
                 <span className="block font-heading text-3xl font-extrabold text-gold">
                   6+
                 </span>
-                <span className="text-navy/50 text-sm">Trucks &amp; Vans</span>
+                <span className="text-navy/60 text-sm">Trucks &amp; Vans</span>
               </div>
             </div>
 
-            <a href="#quote" className="btn-gold inline-block">
+            <a href="/contact" className="btn-gold inline-block">
               Get in Touch
             </a>
           </div>
@@ -84,6 +84,7 @@ export default function About() {
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
             </div>
             {/* Floating accent card */}

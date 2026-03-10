@@ -9,7 +9,7 @@ const steps = [
   { number: 3, label: "Your Details" },
 ];
 
-export default function QuoteWizard() {
+export default function QuoteWizard({ standalone = false }: { standalone?: boolean }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
@@ -27,9 +27,10 @@ export default function QuoteWizard() {
   };
 
   return (
-    <div className="relative z-30 -mt-12 sm:-mt-16 lg:-mt-20 pb-8">
+    <div className={standalone ? "relative z-30 py-20 lg:py-28 bg-white" : "relative z-30 -mt-12 sm:-mt-16 lg:-mt-20 pb-8"}>
       <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* David behind the card - desktop only */}
+        {/* David behind the card - desktop only, home page only */}
+        {!standalone && (
         <div className="hidden lg:block absolute -top-[690px] right-[-100px] z-10 pointer-events-none">
           <div className="relative">
             {/* Glow behind David */}
@@ -72,6 +73,7 @@ export default function QuoteWizard() {
             </div>
           </div>
         </div>
+        )}
 
         {/* The form card - sits on top of David */}
         <div className="quote-wizard-card relative z-20">
@@ -146,15 +148,16 @@ export default function QuoteWizard() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-from" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Moving From *
                         </label>
                         <div className="relative">
-                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-blue/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-blue/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
                           <input
+                            id="quote-from"
                             type="text"
                             required
                             placeholder="Current suburb or address"
@@ -163,15 +166,16 @@ export default function QuoteWizard() {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-to" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Moving To *
                         </label>
                         <div className="relative">
-                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
                           <input
+                            id="quote-to"
                             type="text"
                             required
                             placeholder="New suburb or address"
@@ -180,14 +184,15 @@ export default function QuoteWizard() {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-date" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Moving Date *
                         </label>
                         <div className="relative">
-                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-navy/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-navy/30" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
                           <input
+                            id="quote-date"
                             type="date"
                             required
                             className="wizard-input pl-14"
@@ -204,14 +209,14 @@ export default function QuoteWizard() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-bedrooms" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           How Many Bedrooms? *
                         </label>
                         <div className="relative">
-                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-blue/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-blue/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
                           </svg>
-                          <select required className="wizard-input pl-14 appearance-none" defaultValue="">
+                          <select id="quote-bedrooms" required className="wizard-input pl-14 appearance-none" defaultValue="">
                             <option value="" disabled>Select bedrooms</option>
                             <option>Studio / 1 Bedroom</option>
                             <option>2 Bedrooms</option>
@@ -226,14 +231,14 @@ export default function QuoteWizard() {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-furnishing" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           How Heavily Furnished? *
                         </label>
                         <div className="relative">
-                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                           </svg>
-                          <select required className="wizard-input pl-14 appearance-none" defaultValue="">
+                          <select id="quote-furnishing" required className="wizard-input pl-14 appearance-none" defaultValue="">
                             <option value="" disabled>Select furnishing level</option>
                             <option>Lightly Furnished</option>
                             <option>Average Furnishing</option>
@@ -255,10 +260,11 @@ export default function QuoteWizard() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-name" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Full Name *
                         </label>
                         <input
+                          id="quote-name"
                           type="text"
                           required
                           placeholder="Your full name"
@@ -266,10 +272,11 @@ export default function QuoteWizard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-email" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Email *
                         </label>
                         <input
+                          id="quote-email"
                           type="email"
                           required
                           placeholder="your@email.com"
@@ -277,10 +284,11 @@ export default function QuoteWizard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                        <label htmlFor="quote-phone" className="block text-navy/70 text-sm font-semibold mb-2.5">
                           Phone *
                         </label>
                         <input
+                          id="quote-phone"
                           type="tel"
                           required
                           placeholder="04XX XXX XXX"
@@ -289,10 +297,11 @@ export default function QuoteWizard() {
                       </div>
                     </div>
                     <div className="mt-5">
-                      <label className="block text-navy/70 text-sm font-semibold mb-2.5">
+                      <label htmlFor="quote-details" className="block text-navy/70 text-sm font-semibold mb-2.5">
                         Additional Details
                       </label>
                       <textarea
+                        id="quote-details"
                         rows={3}
                         placeholder="Special requirements, large items, stairs, access issues..."
                         className="wizard-input resize-none"

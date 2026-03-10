@@ -100,6 +100,7 @@ export default function Testimonials() {
                 className="w-8 h-8 text-gold/30 mb-4"
                 fill="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
               </svg>
@@ -113,7 +114,7 @@ export default function Testimonials() {
                   <span className="block text-white font-heading font-semibold">
                     {testimonial.name}
                   </span>
-                  <span className="text-white/40 text-sm">
+                  <span className="text-white/60 text-sm">
                     {testimonial.location}
                   </span>
                 </div>
